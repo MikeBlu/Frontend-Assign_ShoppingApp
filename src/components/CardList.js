@@ -4,7 +4,10 @@ export default class CardList extends React.Component {
 
     cellStyle = {
         alignContent: 'top',
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'wrap',
+        overflow: 'hidden'
     };
 
     constructor(props) {
@@ -44,7 +47,7 @@ export default class CardList extends React.Component {
 
         return (
             <div style={this.cellStyle}>
-                <div style={{backgroundImage: `url(${entry['image']})`, backgroundSize: 'cover', height: 640}}></div>
+                <div style={{backgroundImage: `url(${entry['image']})`, backgroundSize: 'cover', height: 406, width: '100%'}}></div>
                 <div>
                     <h6>Category {entry['category']}</h6>
                     <h1 style={{fontSize: '48px'}}>{entry['title']}</h1>
@@ -55,13 +58,15 @@ export default class CardList extends React.Component {
 
     render() {
         return (
-            <div style={{display: 'grid', gridTemplateRows: '400px 400px', gridTemplateColumns: '400px 400px 400px'}}>
-                {this.state.isLoaded?this.card(1):null}
-                {this.state.isLoaded?this.card(2):null}
-                {this.state.isLoaded?this.card(3):null}
-                {this.state.isLoaded?this.card(4):null}
-                {this.state.isLoaded?this.card(5):null}
-                {this.state.isLoaded?this.card(6):null}
+            <div style={this.props.style}>
+                <div style={{display: 'grid', gridTemplateRows: '640px 640px', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px'}}>
+                    {this.state.isLoaded?this.card(1):null}
+                    {this.state.isLoaded?this.card(2):null}
+                    {this.state.isLoaded?this.card(3):null}
+                    {this.state.isLoaded?this.card(4):null}
+                    {this.state.isLoaded?this.card(5):null}
+                    {this.state.isLoaded?this.card(6):null}
+                </div>
             </div>
         )
     }

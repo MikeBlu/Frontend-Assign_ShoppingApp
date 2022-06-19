@@ -58,7 +58,7 @@ export default function Home () {
                     <li>T-shirt</li>
                 </ul>
                 <br></br>
-                <CardList dataURL={'https://fakestoreapi.com/products?limit=7'}/>
+                <CardList style={{clear: 'both', display: 'block'}} dataURL={'https://fakestoreapi.com/products?limit=7'}/>
             </div>
         </div>
     )
