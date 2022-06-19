@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import React from "react";
 import HeartIcon from '../assets/Heart_Icon.svg';
 import ShopIcon from '../assets/Shop_Icon.svg';
 import NotifIcon from '../assets/Notif_Icon.svg';
@@ -57,6 +57,7 @@ export default function Home () {
                     <li>Skirt</li>
                     <li>T-shirt</li>
                 </ul>
+                <br></br>
                 <CardList dataURL={'https://fakestoreapi.com/products?limit=7'}/>
             </div>
         </div>
