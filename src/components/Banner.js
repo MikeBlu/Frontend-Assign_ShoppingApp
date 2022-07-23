@@ -10,7 +10,11 @@ export default class Banner extends React.Component {
                     <div style={{paddingRight: '10%'}}>
                         <h1 style={{fontSize: '64px'}}>{this.props.title}</h1>
                         <p>{this.props.children}</p>
-                        {(this.props.hasButton)?<button>{this.props.buttonText}</button>:null}
+
+                        {(this.props.hasButton)?
+                        <button style={{cursor: 'pointer', fontSize: '16px', color: 'white', borderRadius: '8px', padding: '18px 24px 18px 24px', border: 'none', backgroundColor: '#f86338', marginTop: '30px'}} onClick={this.props.onClick}>{this.props.buttonText}</button>
+                        :null}
+                        
                     </div>
                 </div>
             </div>

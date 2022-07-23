@@ -1,9 +1,8 @@
 import React from "react";
-import HeartIcon from '../assets/Heart_Icon.svg';
-import ShopIcon from '../assets/Shop_Icon.svg';
-import NotifIcon from '../assets/Notif_Icon.svg';
+import HeartIcon from '../assets/Heart_Icon.svg'; import ShopIcon from '../assets/Shop_Icon.svg'; import NotifIcon from '../assets/Notif_Icon.svg';
 import Banner from "../components/Banner.js";
 import CardList from "../components/CardList";
+import CardBoard from "../components/CardBoard";
 
 const homeStyle = {
     navLink : {
@@ -27,7 +26,7 @@ const homeStyle = {
 };
 
 export default function Home () {
-    let bannerDisplay = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+    let placeholder = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
     return (
         <div>
@@ -45,10 +44,10 @@ export default function Home () {
                     </div>
                 </div>
             </div>
-            <Banner src='./images/EarPhones.jpg' title='Your Premium Sound, Unplugged!' font='DM Sans'>{bannerDisplay}</Banner>
+            <Banner src='./images/EarPhones.jpg' title='Your Premium Sound, Unplugged!' font='DM Sans' hasButton={true} buttonText='Find out More'>{placeholder}</Banner>
             <h2 style={homeStyle.sectionTitle}>Our Premium Collection</h2>
             <div style={{margin: '50px 5% 0% 5%', fontFamily: 'DM Sans'}}>
-                <ul style={{fontSize: '24px', fontWeight: 700, color: '#9a9ab0', display: 'flex', justifyContent: 'space-between', listStyle: 'none', alignItems: 'center', width: '95%', float: 'left'}}>
+                <ul style={{fontSize: '24px', fontWeight: 700, color: '#9a9ab0', display: 'flex', justifyContent: 'space-between', listStyle: 'none', alignItems: 'center', width: '95%', float: 'left', marginBottom: 90}}>
                     <li>All Products</li>
                     <li>Coats and Jacket</li>
                     <li>Dressed</li>
@@ -57,9 +56,12 @@ export default function Home () {
                     <li>Skirt</li>
                     <li>T-shirt</li>
                 </ul>
-                <br></br>
-                <CardList style={{clear: 'both', display: 'block'}} dataURL={'https://fakestoreapi.com/products?limit=7'}/>
+                <CardList style={{clear: 'both', display: 'block'}} dataURL={'https://fakestoreapi.com/products?limit=6'}/>
+                <div style={{fontSize: '16px', display: 'flex', marginTop: 80, justifyContent: 'center'}}>
+                    <button style={{borderRadius: '8px', color: 'white', border: 'none', padding: '18px 24px 18px 24px', backgroundColor: '#f86338'}}>Find out More</button>
+                </div>
             </div>
+            <CardBoard style={{fontFamily: 'DM Sans', marginTop: 150}} title='Top Items'>{placeholder}</CardBoard>
         </div>
     )
 }

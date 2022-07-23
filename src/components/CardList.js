@@ -1,4 +1,5 @@
 import React from 'react';
+import ArrowIcon from '../assets/ArrowRight_Icon.svg';
 
 export default class CardList extends React.Component {
 
@@ -47,10 +48,11 @@ export default class CardList extends React.Component {
 
         return (
             <div style={this.cellStyle}>
-                <div style={{backgroundImage: `url(${entry['image']})`, backgroundSize: 'cover', height: 406, width: '100%'}}></div>
+                <div style={{backgroundImage: `url(${entry['image']})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', height: 406, width: '100%', backgroundPosition: 'center'}}></div>
                 <div>
-                    <h6>Category {entry['category']}</h6>
-                    <h1 style={{fontSize: '48px'}}>{entry['title']}</h1>
+                    <h6 style={{color: '#9a9ab0', marginLeft: '5%', marginBottom: '10px'}}>Category {entry['category']}</h6>
+                    <h1 style={{fontSize: '28px', marginLeft: '5%', marginTop: '0'}}>{entry['title']}</h1>
+                    <div style={{display: 'flex', cursor: 'pointer', width: '40px', height: '40px', marginLeft: '5%', backgroundColor: '#F86338', borderRadius: '28px', alignContent: 'center'}}><img src={ArrowIcon} style={{display: 'block', width: '50%', marginLeft: 'auto', marginRight: 'auto'}} alt='go-to'/></div>
                 </div>
             </div>
         )
