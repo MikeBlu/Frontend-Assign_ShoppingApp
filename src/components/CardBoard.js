@@ -4,19 +4,25 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 export default class CardBoard extends React.Component {
 
     cardStyle = {
-        regular: (isEnd, backgroundImageSrc) => {
+        regular: (isEnd) => {
             return {
                 display: 'inline-block',
+                verticalAlign: 'middle',
                 backgroundColor: '#E5E5E5',
                 height: '100%',
                 width: '425px',
                 marginRight: (isEnd?'0px':'15px'),
-                borderRadius: '6px',
-                backgroundImage: `url(${backgroundImageSrc})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'contain',
-                backgroundPosition: 'center'
+                borderRadius: '6px'
             }
+        },
+        innerElement: {
+            height: '90%',
+            width: '90%',
+            margin: 'auto',
+            textWrap: 'balance',
+            fontSize: 30,
+            fontWeight: 'bold',
+            color: '#DDDDDD'
         }
     }
 
@@ -36,8 +42,8 @@ export default class CardBoard extends React.Component {
         this.state = {
             data: [],
             isLoaded: false,
-            indicatorPos: 2,
-            currPos: 2518,
+            indicatorPos: 0,
+            currPos: 0,
             speed: 0,
             currentlyMoving: false
         };
@@ -56,13 +62,12 @@ export default class CardBoard extends React.Component {
     }
 
     componentDidMount = () => {
-        this.scroller.addEventListener("onscrollstart",() => {this.setState({currentlyMoving: false}); console.log("started scrolling")});
+        this.scroller.addEventListener("onscrollstart",() => this.setState({currentlyMoving: false}) );
         this.getProductData().then(response => {
             this.setState({
               data: response,
               isLoaded: true
             });
-            console.log(this.state.data);
         });
     }
 
@@ -72,7 +77,6 @@ export default class CardBoard extends React.Component {
         const { scrollWidth, scrollLeft, clientWidth } = this.scroller;
         const scroll = scrollWidth - scrollLeft - clientWidth;
 
-        // console.log(scroll);
         if (scroll <= 1100) this.setState({indicatorPos: 4});
         else if (scroll <= 2400) this.setState({indicatorPos: 3});
         else if (scroll <= 3700) this.setState({indicatorPos: 2});
@@ -91,8 +95,6 @@ export default class CardBoard extends React.Component {
         this.scroller.scrollTo({left: (scrollWidth  - (scroll + this.state.speed)), behavior: 'smooth'});
         // this.scroller.scrollTo({left: ((scroll + this.state.speed)), behavior: 'smooth'});
 
-        console.log(scroll + this.state.speed);
-
         this.setState({currPos: scroll});
         this.setState({speed: 0});
 
@@ -102,16 +104,19 @@ export default class CardBoard extends React.Component {
         const entry = this.state.data[cardNumber-1];
 
         return (
-            <div key={cardNumber} style={this.cardStyle.regular( ((cardNumber===15)?true:false),entry['image'] )}></div>
+            <div key={cardNumber} style={this.cardStyle.regular((cardNumber===15)?true:false)}>
+                <div style={this.cardStyle.innerElement}>{entry['title']}</div>
+            </div>
         )
     }
 
     render() {
 
         const cards = [];
-        for (let i = 1; i <= 15; i++) {
-            if (!this.state.isLoaded) break;
-            cards.push(this.card(i));
+        if (this.state.isLoaded) {
+            for (let i = 1; i <= 15; i++) {
+                cards.push(this.card(i));
+            }
         }
 
         return (
